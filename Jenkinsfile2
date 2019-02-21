@@ -1,9 +1,14 @@
-properties([
-    pipelineTriggers([
+pipeline {
+    agent any
+    triggers {
         issueCommentTrigger('.*test this please.*')
-    ])
-])
-
-
-print("Hello\n")
+    }
+    stages {
+        stage('Test') {
+            steps {
+                print('Hello')
+            }
+        }
+    }
+}
 
