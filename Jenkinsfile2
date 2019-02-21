@@ -1,13 +1,13 @@
-properties([
-    $class: 'GithubProjectProperty',
-    displayName: '',
-    projectUrlStr: 'https://github.com/enthought/buildsystem/'
-    ],
-	[pipelineTriggers([
-			pollSCM(
-			    ignorePostCommitHooks: true,
-			    scmpoll_spec: 'H/3 * * * *'
-			)]
-	])
-
-print("Hello")
+pipeline {
+    agent any
+    triggers {
+        issueCommentTrigger('.*test this please.*')
+    }
+    stages {
+        stage('Test') {
+            steps {
+                print('Hello')
+            }
+        }
+    }
+}
