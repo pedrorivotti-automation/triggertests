@@ -1,0 +1,7 @@
+properties([
+    pipelineTriggers([
+        issueCommentTrigger('.*test this please.*')
+    ])
+])
+
+print("Hello\n"
