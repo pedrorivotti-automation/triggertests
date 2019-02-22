@@ -5,7 +5,9 @@ pipeline {
             steps {
                 print('Hello')
                 script{
-                    pullRequest.comment('This PR is highly illogical..')
+                    for (comment in pullRequest.comments) {
+                      echo "Author: ${comment.user}, Comment: ${comment.body}"
+                    }
                 }
             }
         }
