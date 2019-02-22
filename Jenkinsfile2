@@ -1,12 +1,24 @@
 pipeline {
     agent any
-    triggers {
-        issueCommentTrigger('.*test this please.*')
-    }
     stages {
         stage('Test') {
             steps {
-                print('Hello')
+                script{
+                    job_trigger = 'Use the following link to run integration tests for this branch:\n' +
+                                  'http://jenkins.camuk.en/job/jsr-microbiome/job/integration-tests/buildWithParameters' +
+                                  "?commit=${pullRequest.headRef}?repo=jsr-microbiome-core" +
+                                  '\n\n_Comment automatically generated via Jenkins_\n'
+                    comment_found = false
+                    for (comment in pullRequest.comments) {
+                      if ("${comment.body}" == job_trigger) {
+                        comment_found = true
+                        break
+                      }
+                    }
+                    if (!comment_found) {
+                        pullRequest.comment(job_trigger)
+                    }
+                }
             }
         }
     }
