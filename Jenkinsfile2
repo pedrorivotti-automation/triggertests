@@ -14,6 +14,7 @@ pipeline {
                       if (comment.body == job_trigger) {
                         comment_found = true
                         break
+                      }
                     }
                     if (!comment) {
                         pullRequest.comment(job_trigger)
