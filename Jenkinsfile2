@@ -4,7 +4,9 @@ pipeline {
         stage('Test') {
             steps {
                 print('Hello')
-                pullRequest.comment('This PR is highly illogical..')
+                script{
+                    pullRequest.comment('This PR is highly illogical..')
+                }
             }
         }
     }
