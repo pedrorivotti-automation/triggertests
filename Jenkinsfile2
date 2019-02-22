@@ -11,7 +11,7 @@ pipeline {
                                   '\n\n_Comment automatically generated via Jenkins_\n'
                     comment_found = false
                     for (comment in pullRequest.comments) {
-                      if (comment.body == job_trigger) {
+                      if (${comment.body} == job_trigger) {
                         comment_found = true
                         break
                       }
