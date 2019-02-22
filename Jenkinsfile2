@@ -1,12 +1,10 @@
 pipeline {
     agent any
-    triggers {
-        issueCommentTrigger('.*test this please.*')
-    }
     stages {
         stage('Test') {
             steps {
                 print('Hello')
+                pullRequest.comment('This PR is highly illogical..')
             }
         }
     }
