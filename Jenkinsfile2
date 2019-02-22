@@ -10,9 +10,14 @@ pipeline {
                                   '?commit=master?repo=jsr-microbiome-core' +
                                   '\n\n_Comment automatically generated via Jenkins_\n'
                     comment_found = false
-
+                    for (comment in pullRequest.comments) {
+                      if ("${comment.body}" == job_trigger) {
+                        comment_found = true
+                        break
+                      }
+                    }
                     if (!comment) {
-                        pullRequest.comment(job_trigger)
+                        pullRequest.comment('This PR is highly illogical..')
                     }
                 }
             }
