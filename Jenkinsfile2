@@ -17,7 +17,7 @@ pipeline {
                       }
                     }
                     if (!comment_found) {
-                        pullRequest.comment('This PR is highly illogical..')
+                        pullRequest.comment(job_trigger)
                     }
                 }
             }
