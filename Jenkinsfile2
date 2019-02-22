@@ -16,7 +16,7 @@ pipeline {
                         break
                       }
                     }
-                    if (!comment) {
+                    if (!comment_found) {
                         pullRequest.comment('This PR is highly illogical..')
                     }
                 }
